@@ -14,4 +14,8 @@ public class Controller {
     public List<User> getUsers() {
         return persisControl.getUsers();
     }
+
+    public void deleteUser(int idDelete) {
+        persisControl.deleteUser(idDelete);
+    }
 }

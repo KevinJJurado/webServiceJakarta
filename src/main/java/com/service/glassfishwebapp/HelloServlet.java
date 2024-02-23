@@ -22,11 +22,10 @@ public class HelloServlet extends HttpServlet {
 
         listUsers = control.getUsers();
 
-        HttpSession mysession = request.getSession();
-        mysession.setAttribute("listUsers", listUsers);
+        HttpSession mysesion = request.getSession();
+        mysesion.setAttribute("listUsers", listUsers);
 
         response.sendRedirect("showUsers.jsp");
-
     }
 
     @Override
@@ -52,6 +51,4 @@ public class HelloServlet extends HttpServlet {
         resp.sendRedirect("index.jsp");
     }
 
-    public void destroy() {
-    }
 }

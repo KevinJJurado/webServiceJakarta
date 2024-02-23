@@ -1,10 +1,8 @@
 package com.service.glassfishwebapp.persistence;
 
 import com.service.glassfishwebapp.logic.User;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import com.service.glassfishwebapp.persistence.exceptions.NonexistentEntityException;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaQuery;
 
 import java.io.Serializable;
@@ -64,4 +62,28 @@ public class UserJpaController implements Serializable {
         }
     }
 
+    public void destroy(int id) throws NonexistentEntityException, Exception {
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            User user;
+            try {
+                user = em.getReference(User.class, id);
+                user.getId();
+            } catch (EntityNotFoundException enfe) {
+                throw new NonexistentEntityException("The fish with id " + id + " no longer exists.", enfe);
+            }
+            em.remove(user);
+            em.getTransaction().commit();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+
+
+
+    }
 }

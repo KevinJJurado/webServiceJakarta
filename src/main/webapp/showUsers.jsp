@@ -10,28 +10,41 @@
     <title>JSP Page</title>
 </head>
 <body>
-<div class="container mt-3">
-    <h1 class="text-center">User List!</h1>
+<div class="container m-3">
+    <h1 class="text-center">List Users!</h1>
     <div class="container d-flex justify-content-center flex-wrap">
         <%
             List<User> listUsers = (List) request.getSession().getAttribute("listUsers");
             int cont = 1;
             for (User usu : listUsers) {
-        %>      <div class="card m-3" style="width: 18rem;">
+        %>      <div class="card m-3 shadow rounded" style="width: 18rem">
                     <div class="card-body">
                         <p class="card-title"><b>User N° <%=cont%></b></p>
-                        <ul class="list-group">
-                            <li class="list-group-item"><p>Id: <%=usu.getId()%></p></li>
-                            <li class="list-group-item"><p>Dni: <%=usu.getDni()%></p></li>
-                            <li class="list-group-item"><p>First Name: <%=usu.getfName()%></p></li>
-                            <li class="list-group-item"><p>Last Name: <%=usu.getlName()%></p></li>
-                            <li class="list-group-item"><p>Phone: <%=usu.getPhone()%></p></li>
-                        </ul>
+                        <form action="SvDelete" method="post">
+                            <input name="id_delete"  type="hidden" value="<%=usu.getId()%>">
+                            <ul class="list-group">
+                                <li class="list-group-item">Id: <%=usu.getId()%></li>
+                                <li class="list-group-item">Dni: <%=usu.getDni()%></li>
+                                <li class="list-group-item">First Name: <%=usu.getfName()%></li>
+                                <li class="list-group-item">Last Name: <%=usu.getlName()%></li>
+                                <li class="list-group-item">Phone: <%=usu.getPhone()%></li>
+                            </ul>
+
+                            <button class="btn btn-danger mt-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
+
                 </div>
-        <%cont++;%>
-        <%}%>
+            <%cont++;%>
+            <%}%>
+
     </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
