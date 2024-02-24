@@ -86,4 +86,15 @@ public class UserJpaController implements Serializable {
 
 
     }
+
+    public User getUser(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(User.class, id);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
 }

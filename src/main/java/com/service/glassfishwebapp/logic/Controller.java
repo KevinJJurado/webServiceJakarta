@@ -18,4 +18,8 @@ public class Controller {
     public void deleteUser(int idDelete) {
         persisControl.deleteUser(idDelete);
     }
+
+    public User getUser(int idUpdate) {
+        return persisControl.getUser(idUpdate);
+    }
 }

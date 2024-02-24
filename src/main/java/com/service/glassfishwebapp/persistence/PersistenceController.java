@@ -25,4 +25,8 @@ public class PersistenceController {
         }
 
     }
+
+    public User getUser(int idUpdate) {
+        return usuJpa.getUser(idUpdate);
+    }
 }
