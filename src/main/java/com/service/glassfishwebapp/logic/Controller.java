@@ -22,4 +22,8 @@ public class Controller {
     public User getUser(int idUpdate) {
         return persisControl.getUser(idUpdate);
     }
+
+    public void updateUser(User usu) {
+        persisControl.updateUser(usu);
+    }
 }

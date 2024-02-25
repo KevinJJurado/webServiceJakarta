@@ -29,4 +29,13 @@ public class PersistenceController {
     public User getUser(int idUpdate) {
         return usuJpa.getUser(idUpdate);
     }
+
+    public void updateUser(User usu) {
+        try {
+            usuJpa.updateUser(usu);
+        }catch (Exception ex) {
+            Logger.getLogger(PersistenceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
